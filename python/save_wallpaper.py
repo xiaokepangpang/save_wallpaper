@@ -20,13 +20,13 @@ class SaveWallpaper(object):
     self.__config_file = "exists.json"
     print(f"source path: {self.__source}")
     print(f"target path: {self.__target}")
-    config_path = os.path.join(target_path, self.__config_file)
+    config_path = os.path.join(self.__target, self.__config_file)
     if os.path.exists(config_path):
-      with open(os.path.join(target_path, self.__config_file)) as f:
+      with open(os.path.join(self.__target, self.__config_file)) as f:
         self.__exists_set = set(json.loads(f.read()))
     else:
       print(f"no {self.__config_file} detected, start init...")
-      self.init_exist_set(target_path)
+      self.init_exist_set(self.__target)
       print("init success")
 
   def get_file_hash(self, file_content):
